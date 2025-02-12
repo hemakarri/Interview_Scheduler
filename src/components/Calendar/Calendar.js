@@ -1,9 +1,9 @@
-// src/components/Calendar.js
 import React from "react";
 import { useInterview } from "../context/InterviewContext";
 import { Calendar as ReactBigCalendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import './Calendar.css'; // Import CSS file
 
 const localizer = momentLocalizer(moment);
 
@@ -18,13 +18,13 @@ const Calendar = () => {
   }));
 
   return (
-    <div style={{ height: 500 }}>
+    <div className="calendar-container">
       <ReactBigCalendar
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: "100%" }}
+        className="react-calendar"
       />
     </div>
   );

@@ -1,42 +1,49 @@
-// // src/context/InterviewContext.js
-// import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useContext, useState } from 'react';
 
-// const InterviewContext = createContext();
+// Create a context to store interviews data
+const InterviewContext = createContext();
 
-// export const useInterview = () => useContext(InterviewContext);
+// Custom hook to use InterviewContext
+export const useInterview = () => {
+  return useContext(InterviewContext);
+};
 
-// export const InterviewProvider = ({ children }) => {
-//   const [interviews, setInterviews] = useState(JSON.parse(localStorage.getItem("interviews")) || []);
+// InterviewProvider component that wraps the app
+export const InterviewProvider = ({ children }) => {
+  const [interviews, setInterviews] = useState(
+    JSON.parse(localStorage.getItem('interviews')) || []
+  );
 
-//   const addInterview = (interview) => {
-//     setInterviews((prevInterviews) => {
-//       const newInterviews = [...prevInterviews, interview];
-//       localStorage.setItem("interviews", JSON.stringify(newInterviews));
-//       return newInterviews;
-//     });
-//   };
+  const saveToLocalStorage = (data) => {
+    localStorage.setItem('interviews', JSON.stringify(data));
+  };
 
-//   const updateInterview = (updatedInterview) => {
-//     setInterviews((prevInterviews) => {
-//       const newInterviews = prevInterviews.map((interview) =>
-//         interview.id === updatedInterview.id ? updatedInterview : interview
-//       );
-//       localStorage.setItem("interviews", JSON.stringify(newInterviews));
-//       return newInterviews;
-//     });
-//   };
+  // Add a new interview
+  const addInterview = (interview) => {
+    const updatedInterviews = [...interviews, interview];
+    setInterviews(updatedInterviews);
+    saveToLocalStorage(updatedInterviews);
+  };
 
-//   const deleteInterview = (id) => {
-//     setInterviews((prevInterviews) => {
-//       const newInterviews = prevInterviews.filter((interview) => interview.id !== id);
-//       localStorage.setItem("interviews", JSON.stringify(newInterviews));
-//       return newInterviews;
-//     });
-//   };
+  // Delete an interview
+  const deleteInterview = (id) => {
+    const updatedInterviews = interviews.filter((interview) => interview.id !== id);
+    setInterviews(updatedInterviews);
+    saveToLocalStorage(updatedInterviews);
+  };
 
-//   return (
-//     <InterviewContext.Provider value={{ interviews, addInterview, updateInterview, deleteInterview }}>
-//       {children}
-//     </InterviewContext.Provider>
-//   );
-// };
+  // Update an existing interview
+  const updateInterview = (updatedInterview) => {
+    const updatedInterviews = interviews.map((interview) =>
+      interview.id === updatedInterview.id ? updatedInterview : interview
+    );
+    setInterviews(updatedInterviews);
+    saveToLocalStorage(updatedInterviews);
+  };
+
+  return (
+    <InterviewContext.Provider value={{ interviews, addInterview, deleteInterview, updateInterview }}>
+      {children}
+    </InterviewContext.Provider>
+  );
+};

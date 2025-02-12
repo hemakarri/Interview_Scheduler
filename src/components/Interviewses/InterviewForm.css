@@ -1,0 +1,77 @@
+/* src/components/InterviewForm.css */
+
+.interview-form-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .interview-form-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .interview-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .interview-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .interview-form-label {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .interview-form-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin-top: 5px;
+  }
+  
+  .interview-form-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .interview-form-container {
+      padding: 15px;
+    }
+  
+    .interview-form-title {
+      font-size: 1.5rem;
+    }
+  
+    .interview-form {
+      gap: 10px;
+    }
+  
+    .interview-form-input {
+      font-size: 0.9rem;
+    }
+  
+    .interview-form-button {
+      padding: 12px;
+      width: 100%; /* Make button fill width on mobile */
+    }
+  }
+  
